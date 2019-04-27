@@ -1,0 +1,7 @@
+url = http://ec2-54-84-52-184.compute-1.amazonaws.com:8080/admin/
+username = test9
+password = 12345
+email=test9@mailinator.com
+browser = chrome
+
+
