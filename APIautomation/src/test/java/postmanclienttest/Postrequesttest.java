@@ -25,51 +25,49 @@ public class Postrequesttest extends Testbase {
 	Postrequest postrequest;
 	String apiurl;
 	CloseableHttpResponse closeablehttpresponse;
-	
-	
+
 	@BeforeMethod
 	public void setup() {
-		testbase= new Testbase();
-		 apiurl= prop.getProperty("url");
-		
-		}
-	
+		testbase = new Testbase();
+		apiurl = prop.getProperty("url");
+
+	}
+
 	@Test
 	public void postrequest() throws JsonGenerationException, JsonMappingException, IOException {
-		postrequest =new Postrequest();
-		HashMap<String,String> headermap= new HashMap<String,String>();
-		headermap.put("Content-Type","application/json");
-		
-		//Jackson API
-		ObjectMapper mapper =new ObjectMapper();
-		Postrequestdata data =new Postrequestdata(11111,9735,"Its Me","Hello");
-		
-		//Object to JsonFile
-		mapper.writeValue(new File("C:\\Users\\Suneetha\\eclipse-workspace\\APIautomation\\src\\main\\java\\postmandata\\Jsondata"), data);
-		
-		
-		//Object to Json in String
-		String jsonString= mapper.writeValueAsString(data);
+		postrequest = new Postrequest();
+		HashMap<String, String> headermap = new HashMap<String, String>();
+		headermap.put("Content-Type", "application/json");
+
+		// Jackson API
+		ObjectMapper mapper = new ObjectMapper();
+		Postrequestdata data = new Postrequestdata(11111, 738, "Its Me", "Hello");
+
+		// Object to JsonFile
+		mapper.writeValue(
+				new File("C:\\Users\\Suneetha\\git\\Automation\\APIautomation\\src\\main\\java\\postmandata\\Jsondata"),
+				data);
+
+		// Object to Json in String
+		String jsonString = mapper.writeValueAsString(data);
 		System.out.println(jsonString);
 		closeablehttpresponse = postrequest.post(apiurl, jsonString, headermap);
-		
-		//Status Code
-		int statuscode=closeablehttpresponse.getStatusLine().getStatusCode();
+
+		// Status Code
+		int statuscode = closeablehttpresponse.getStatusLine().getStatusCode();
 		System.out.println(statuscode);
-		Assert.assertEquals(statuscode,testbase.RESPOSE_STATUS_CODE_201);
-		
-		//Json String
+		Assert.assertEquals(statuscode, testbase.RESPOSE_STATUS_CODE_201);
+
+		// Json String
 		String responsestring = EntityUtils.toString(closeablehttpresponse.getEntity(), "UTF-8");
 		JSONObject response = new JSONObject(responsestring);
 		System.out.println("The response from API :" + response);
-		
-		//Json to Java Object
+
+		// Json to Java Object
 		Postrequestdata request = mapper.readValue(responsestring, Postrequestdata.class);
 		System.out.println(request);
 		System.out.println(data.getTitle().equals(request.getTitle()));
 		System.out.println(data.getBody().equals(request.getBody()));
-		
-		
-		
+
 	}
 }

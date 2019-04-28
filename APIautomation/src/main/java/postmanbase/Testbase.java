@@ -18,7 +18,7 @@ public class Testbase {
 		try {
 		prop=new Properties();
 		
-		FileInputStream ip=new FileInputStream("C:\\Users\\Suneetha\\eclipse-workspace\\APIautomation\\src\\main\\java\\configproperties\\Configproperties");
+		FileInputStream ip=new FileInputStream("C:\\Users\\Suneetha\\git\\Automation\\APIautomation\\src\\main\\java\\configproperties\\Configproperties");
 		prop.load(ip);
 		}
 	catch(FileNotFoundException e)
