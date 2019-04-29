@@ -41,7 +41,7 @@ public class Postrequesttest extends Testbase {
 
 		// Jackson API
 		ObjectMapper mapper = new ObjectMapper();
-		Postrequestdata data = new Postrequestdata(11111, 738, "Its Me", "Hello");
+		Postrequestdata data = new Postrequestdata(11111, 55388, "Its Me", "Hello");
 
 		// Object to JsonFile
 		mapper.writeValue(
